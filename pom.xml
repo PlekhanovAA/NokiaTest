@@ -29,9 +29,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>3.4.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/primefaces-3.4.1.jar</systemPath>
+            <version>4.0</version>
         </dependency>
     </dependencies>
 

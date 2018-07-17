@@ -1,0 +1,16 @@
+body {
+    background-color: #dce0e4;
+}
+
+#head {
+    font-size: 60px;
+    display: block;
+    text-align: center;
+    line-height: 150%;
+}
+
+.label {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+}
