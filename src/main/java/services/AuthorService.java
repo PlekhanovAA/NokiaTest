@@ -1,10 +1,15 @@
 package services;
 
+import db.ConnectionHelper;
 import models.Author;
+import org.h2.tools.Server;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +20,12 @@ public class AuthorService {
 
     @PostConstruct
     public void init() {
-        authors = new ArrayList<Author>();
+        try {
+            Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082").start();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        authors = new ArrayList<>();
         authors.add(new Author(0, "Afterdark", "afterdark"));
         authors.add(new Author(1, "Afternoon", "afternoon"));
         authors.add(new Author(2, "Afterwork", "afterwork"));
@@ -29,6 +39,13 @@ public class AuthorService {
         authors.add(new Author(10, "Cruze", "cruze"));
     }
     public List<Author> getAuthors() {
+        try {
+            Connection connection = ConnectionHelper.getConnection();
+            Statement statement = connection.createStatement();
+            ConnectionHelper.createTableTEST (connection, statement);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return authors;
     }
 }
